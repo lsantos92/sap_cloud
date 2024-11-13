@@ -1,0 +1,105 @@
+@Metadata.layer: #CORE
+annotate entity ZS4H_C_EXCELFILE with
+{
+  // Header
+  @UI.facet: [
+  //                  { purpose: #HEADER,
+  //                    id: 'HDR_FILE',
+  //                    type: #DATAPOINT_REFERENCE,
+  //                    position: 10,
+  //                    targetQualifier: 'Filename' },
+
+               { purpose: #HEADER,
+                id: 'HDR_STATUS',
+                type: #DATAPOINT_REFERENCE,
+                position: 20,
+                targetQualifier: 'Status' },
+
+                { purpose: #HEADER,
+                id: 'HDR_CHANGED',
+                type: #DATAPOINT_REFERENCE,
+                position: 30,
+                targetQualifier: 'LastChangedAt' },
+  // Body
+                { label: 'File Content',
+                id: 'FileContent',
+                type: #COLLECTION,
+                position: 10 },
+
+                { label: 'File Details',
+                  id: 'FileDetails',
+                  type: #IDENTIFICATION_REFERENCE,
+                  position: 10,
+                  parentId: 'FileContent',
+                  purpose: #STANDARD },
+
+                { id: 'Upload',
+                  type: #FIELDGROUP_REFERENCE,
+                  position: 20,
+                  targetQualifier: 'Upload',
+                  parentId: 'FileContent' },
+  // Excel Data
+                  { label: 'Excel Data',
+                    id: 'ExcelData',
+                    type: #LINEITEM_REFERENCE,
+                    position: 30,
+                    targetElement: '_prodorders',
+                    parentId: 'FileContent',
+                    purpose: #STANDARD }] //, hidden: #(HideExcel) }]
+
+
+  @UI: { lineItem: [{ position: 10,
+
+                       importance: #HIGH,
+                       label: 'File Name' }]
+                       }
+  // Associação ao elemento filho
+  //                        identification: [{ position: 10,
+  //                        label: 'File Name 1' }] }
+  //type: #FOR_ACTION, dataAction: 'uploadExcelData', label: 'Validate and Show' } ]
+  //                        dataPoint: { title: 'File Name',
+  //                                     targetValueElement: 'Filename' }}
+  //  @UI.hidden: true
+  Filename;
+  @UI: { lineItem: [{ position: 20,
+                      importance: #HIGH,
+                      label: 'Created By' }],
+                      identification: [{ position: 20,
+                      label: 'Created By' }],
+                      //type: #FOR_ACTION, dataAction: 'uploadExcelData', label: 'Validate and Show' } ]
+                      dataPoint: { title: 'Created By',
+                                   targetValueElement: 'CreatedBy'
+                                    } }
+
+  CreatedBy;
+
+  @UI: { lineItem: [{ position: 30,
+                      importance: #HIGH,
+                      label: 'Processing Status'} ],
+                      identification: [{ position: 30,
+                                         label: 'Processing Status' }],
+                                         dataPoint: { title: 'Processing Status',
+                                         targetValueElement: 'Status',
+  //                                         criticality: 'CriticalyStatus',
+                                         criticalityRepresentation: #WITHOUT_ICON } }
+
+  Status;
+
+  @UI: { fieldGroup: [{ position: 40, qualifier: 'Upload', label: 'File Content' }] }
+  //   @UI: { fieldGroup: [{ position: 30, label: 'File'  }] }
+  Attachment;
+
+  @UI.hidden: true
+  Mimetype;
+
+
+  @UI: {
+  //          lineItem: [{ position: 50,
+  //                      importance: #HIGH,
+  //                      label: 'Last Changed At' }],
+  //                      identification: [{ position: 50,
+  //                      label: 'Last Changed At' }],
+                       dataPoint: { title: 'Last Action On', targetValueElement: 'LastChangedAt' } }
+  LastChangedAt;
+
+}

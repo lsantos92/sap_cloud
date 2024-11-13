@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service Definition for Excel File'
+define service ZS4H_SD_EXCELFILE {
+  expose ZS4H_C_EXCELFILE;
+  expose ZS4H_C_PRODORD;
+}

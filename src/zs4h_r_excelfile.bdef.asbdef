@@ -1,0 +1,74 @@
+managed implementation in class zbp_s4h_r_excelfile unique;
+strict ( 1 );
+
+with draft;
+
+define behavior for ZS4H_R_EXCELFILE alias Attach
+persistent table zs4h_excelfile_a
+draft table zs4h_excelfile_d
+lock master
+total etag LocalLastChangedAt
+authorization master ( global )
+etag master LastChangedAt
+{
+  create;
+  update;
+  delete;
+//  field ( readonly ) AttachId;
+  field ( readonly ) CreatedBy, Status ;
+  association _prodorders { create; with draft; }
+
+  field ( numbering : managed, readonly ) AttachId;
+
+  draft action Edit;
+  draft action Activate;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for zs4h_excelfile_a {
+   AttachId = attach_id;
+   Attachment = attachment;
+   Mimetype = mimetype;
+   Filename = filename;
+   Status = status;
+   CreatedBy = created_by;
+   CreatedAt = created_at;
+   LocalLastChangedBy = local_last_changed_by;
+   LocalLastChangedAt = local_last_changed_at;
+   LastChangedAt = last_changed_at;
+  }
+
+}
+
+define behavior for zs4h_r_prodord alias ProdOrd
+persistent table zs4h_prodord_a
+draft table zs4h_prodord_d
+lock dependent by _attach
+authorization dependent by _attach
+etag master LastChangedAt
+{
+  update;
+  delete;
+  field ( numbering : managed, readonly ) Id;
+  field ( readonly ) AttachId;
+  association _attach { with draft; }
+
+  mapping for zs4h_prodord_a {
+  Id = id;
+  AttachId = attach_id;
+  ManuOrderType = manu_order_type;
+  Material = material;
+  ProdPlant = prod_plant;
+  MrpController = mrp_controller;
+  OrderPlannedStartdate = order_planned_startdate;
+  OrderPlannedStarttime = order_planned_starttime;
+  OrderPlannedEnddate = order_planned_enddate;
+  OrderPlannedEndtime = order_planned_endtime;
+  TotalQnty = total_qnty;
+  Supervisor = supervisor;
+  ProdUnit = prod_unit;
+  }
+
+
+}

@@ -1,0 +1,108 @@
+@Metadata.layer: #CORE
+annotate entity ZS4H_C_PRODORD
+    with 
+{
+  @UI.facet: [{ 
+    id: 'ProdOrders',
+    type: #FIELDGROUP_REFERENCE,
+    purpose: #STANDARD,
+    label: 'Production Orders',
+    targetQualifier: 'ProdDetails' }]
+    
+//    @UI.lineItem: [{ position: 1 }]
+//      user;
+  
+//  @UI.lineItem: [{ position: 10 , 
+//                   label: 'Order Type', 
+//                   invocationGrouping: #ISOLATED },
+//                 { type: #FOR_ACTION, 
+//                   dataAction: 'createProdOrder', 
+//                   label: 'Create Production Order' }]
+                   
+  @UI.fieldGroup: [{ position: 10, 
+                    label: 'Order Type', 
+                    qualifier: 'OrderDetails' }]
+  ManuOrderType;
+  
+  @UI.lineItem: [{ position: 20 ,
+                   label: 'Material' }]
+                   
+  @UI.fieldGroup: [{ position: 20 ,
+                     label: 'Material',
+                     qualifier: 'OrderDetails' }]
+  Material;
+  
+  @UI.lineItem: [{ position: 30,
+                   label: 'Production Plant' }]
+                   
+  @UI.fieldGroup: [{ position: 30,
+                     label: 'Production Plant',
+                     qualifier: 'OrderDetails' }]
+  ProdPlant;
+  
+  @UI.lineItem: [{ position: 40 ,
+                   label: 'MRPController' }]
+                   
+  @UI.fieldGroup: [{ position: 40 ,
+                     label: 'MRPController',
+                     qualifier: 'OrderDetails' }]
+  MrpController;
+  
+  @UI.lineItem: [{ position: 50, 
+                   label: 'OrderPlannedStartdate' }]
+                   
+  @UI.fieldGroup: [{ position: 50 ,
+                     label: 'OrderPlannedStartdate',
+                     qualifier: 'OrderDetails' }]
+  OrderPlannedStartdate;
+ 
+  @UI.lineItem: [{ position: 60 , 
+                   label: 'OrderPlannedStarttime' }]
+  
+  @UI.fieldGroup: [{ position: 60 , 
+                     label: 'OrderPlannedStarttime',
+                     qualifier: 'OrderDetails' }]
+  OrderPlannedStarttime;
+ 
+  @UI.lineItem: [{ position: 70 ,
+                   label: 'OrderPlannedEnddate' }]
+  @UI.fieldGroup: [{ position: 70 ,
+                     label: 'OrderPlannedEnddate',
+                     qualifier: 'OrderDetails' }]
+  OrderPlannedEnddate;
+  
+  @UI.lineItem: [{ position: 80 ,
+                     label: 'OrderPlannedEndtime' }]
+  @UI.fieldGroup: [{ position: 80 ,
+                     label: 'OrderPlannedEndtime', 
+                     qualifier: 'OrderDetails' }]
+  OrderPlannedEndtime;
+ 
+  @UI.lineItem: [{ position: 90 , 
+                   label: 'TotalQnty' }]
+  @UI.fieldGroup: [{ position: 90 ,
+                     label: 'TotalQnty', 
+                     qualifier: 'OrderDetails' }]
+ 
+  TotalQnty;
+  
+  @UI.lineItem: [{ position: 100 , 
+                   label: 'ProdUnit' }]
+  
+  @UI.fieldGroup: [{ position: 100 , 
+                     label: 'ProdUnit', 
+                     qualifier: 'OrderDetails' }]
+  ProdUnit;
+  
+//  @UI.lineItem: [{ position: 110 , label: 'Error' , hidden: true}]
+//  
+//  @UI.fieldGroup: [{ position: 110 , label: 'Error' , hidden: true}]
+//  
+//  error;
+//  
+//  @UI.lineItem: [{ position: 120 , label: 'Error Message' }]
+//  @UI.fieldGroup: [{ position: 120 , label: 'Error Message', qualifier: 'OrderDetails' }]
+//  
+//  error_message;
+    
+}

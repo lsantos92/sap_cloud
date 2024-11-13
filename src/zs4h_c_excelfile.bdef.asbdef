@@ -1,0 +1,26 @@
+projection;
+strict ( 1 );
+use draft;
+
+define behavior for ZS4H_C_EXCELFILE //alias Attach
+{
+  use create;
+  use update;
+  use delete;
+
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+
+  use association _prodorders { create; with draft; }
+}
+
+define behavior for ZS4H_C_PRODORD //alias ProdOrd
+{
+  use update;
+  use delete;
+
+  use association _attach { with draft; }
+}

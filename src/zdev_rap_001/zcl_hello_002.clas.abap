@@ -22,7 +22,7 @@ CLASS zcl_hello_002 IMPLEMENTATION.
   METHOD if_oo_adt_classrun~main.
 
     out->write( |Hello World!| ).
-    out->write( get_carriers( ) ).
+    out->write( get_carriers(  ) ).
 
   ENDMETHOD.
 
